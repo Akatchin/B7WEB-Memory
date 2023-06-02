@@ -24,7 +24,7 @@ function App() {
           <Button label='Reiniciar' icon={RestartIcon} onClick={resetAndCreateGrid}></Button>
         </C.Info>
         <C.GridArea>
-
+          
         </C.GridArea>
       </C.Container>
     )
