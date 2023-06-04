@@ -5,11 +5,12 @@ import RestartIcon from "./svgs/restart.svg"
 import { InfoItem } from './components/infoItem'
 import { Button } from './components/button'
 import { GridItemType } from './types/GridItemType'
+import { items } from './data/items'
 
 function App() {
 
   const [playing, setPlaying] = useState<boolean>(false)
-  const [timeElapsed, setTimeElapser] = useState<number>(0)
+  const [timeElapsed, setTimeElapsed] = useState<number>(0)
   const [moveCount, setMoveCount] = useState<number>(0)
   const [showCount, setShowCount] = useState<number>(0)
   const [gridItems, setGridItems] = useState<GridItemType[]>([])
@@ -19,7 +20,24 @@ function App() {
   }, [])
 
   const resetAndCreateGrid = () => {
-    
+    //Step 1 - Reset game
+    setTimeElapsed(0)
+    setMoveCount(0)
+    setShowCount(0)
+
+    //Step 2 = Create empty grid
+    const tempGrid: GridItemType[] = []
+
+    for(let i = 0; i < (items.length * 2); i++) {
+      tempGrid.push({
+        item: null,
+        shown: false,
+        permanentShown: false
+      })
+    }
+
+    //Step 3 - Start game
+    setPlaying(true)
   }
 
     return (
