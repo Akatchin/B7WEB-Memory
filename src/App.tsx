@@ -28,15 +28,25 @@ function App() {
     //Step 2 = Create empty grid
     const tempGrid: GridItemType[] = []
 
-    for(let i = 0; i < (items.length * 2); i++) {
-      tempGrid.push({
-        item: null,
-        shown: false,
-        permanentShown: false
+    for(let i = 0; i < (items.length * 2); i++) 
+      tempGrid.push({item: null, shown: false, permanentShown: false
       })
+
+    //Step 3 - Filling in the grid
+    for(let w = 0; w < 2; w++){
+      for(let i = 0; i < items.length; i++){
+        let pos = -1
+        while(pos < 0 || tempGrid[pos].item !== null ) {
+          pos = Math.floor(Math.random() *(items.length * 2))
+        }   
+        tempGrid[pos].item = i
+      }
     }
 
-    //Step 3 - Start game
+    //Push in the state 
+    setGridItems(tempGrid)
+
+    //Step 5 - Start game
     setPlaying(true)
   }
 
