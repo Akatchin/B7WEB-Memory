@@ -28,6 +28,38 @@ function App() {
     return () => clearInterval(timer)
   }, [playing, timeElapsed])
 
+  useEffect(() => {
+    if(shownCount === 2) {
+      const opened = gridItems.filter( item => item.shown === true )
+      if(opened.length === 2) {
+        //v1 - if both are equal, make every "shown" permanent
+        const tempGrid = [...gridItems]
+        if(opened[0].item === opened[1].item) {
+          for(const i in tempGrid) {
+            if(tempGrid[i].shown) {
+              tempGrid[i].permanentShown = true
+              tempGrid[i].shown = false
+            }
+          }
+        setGridItems(tempGrid)
+        setShownCount(0)
+        } else {
+          //v2 - if they are not equal, close all "shown"
+         setTimeout(() => {
+          const tempGrid = [...gridItems]
+          for(const i in tempGrid) {
+            tempGrid[i].shown = false
+          }
+         }, 1200)
+        }
+        setGridItems(tempGrid)
+        setShownCount(0)
+
+        setMoveCount(moveCount => moveCount + 1)
+      }
+    }
+  }, [shownCount, gridItems])
+
   const resetAndCreateGrid = () => {
     //Step 1 - Reset game
     setTimeElapsed(0)
@@ -80,7 +112,7 @@ function App() {
           </C.LogoLink>
           <C.InfoArea>
               <InfoItem label="tempo" value={formatTimeElapsed(timeElapsed)}/>
-              <InfoItem label="Movimentos" value="0"/>
+              <InfoItem label="Movimentos" value={moveCount.toString()}/>
           </C.InfoArea>
           <Button label='Reiniciar' icon={RestartIcon} onClick={resetAndCreateGrid}></Button>
         </C.Info>
