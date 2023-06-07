@@ -60,7 +60,16 @@ function App() {
   }
 
   const handleItemClick = (index: number) => {
-    console.log("...")
+    if(playing && index !== null && shownCount < 2) {
+      const tempGrid = [...gridItems]
+
+      if(tempGrid[index].permanentShown === false && tempGrid[index].shown === false) {
+        tempGrid[index].shown = true
+        setShownCount(shownCount +1)
+      }
+
+      setGridItems(tempGrid)
+    }
   }
 
     return (
