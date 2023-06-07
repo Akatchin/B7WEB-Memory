@@ -60,6 +60,12 @@ function App() {
     }
   }, [shownCount, gridItems])
 
+  useEffect(() => {
+    if(moveCount > 0 && gridItems.every(item => item.permanentShown === true)) {
+      setPlaying(false)
+    }
+  },[moveCount, gridItems])
+
   const resetAndCreateGrid = () => {
     //Step 1 - Reset game
     setTimeElapsed(0)
