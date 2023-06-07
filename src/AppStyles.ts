@@ -5,7 +5,7 @@ export const Container = styled.div`
     max-width: 750px;
     margin: auto;
     display: flex;
-    padding: 50px 0
+    padding: 50px 0;
 
     @media(max-width: 750px) {
         flex-direction: column
@@ -18,7 +18,7 @@ export const Info = styled.div`
     width: auto; 
     
     @media(max-width: 750px) {
-        margin: 0 0 50px 0;
+        margin-bottom: 50px;
         aligm-items: center;
     }
 `;
@@ -41,7 +41,7 @@ export const InfoArea = styled.div`
 export const GridArea = styled.div`
     flex: 1;
     display: flex;
-    justify-content: flex-end; 
+    justify-content: flex-end;
 
     @media(max-width: 750px) {
         justufy-content: center;
@@ -50,8 +50,8 @@ export const GridArea = styled.div`
 `;
 
 export const Grid = styled.div`
-    width: 430px;
+    width: 420px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr)
-    gap: 10px
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
 `;
